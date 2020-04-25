@@ -1,6 +1,6 @@
-# Deezer Arch Linux package
+# Deezer Ubuntu build script
 
-These files are build instructions for the Arch Linux build system how to create an installable Deezer package for the desktop application. However, the patches are not specific to Archlinux, and can be used for other Linux environments.
+Unofficial script to install Deezer desktop on Ubuntu. Based on [the AUR Script by SibrenVasse](https://aur.archlinux.org/packages/deezer/).
 
 For Windows, Deezer distributes a version of the Electron run time (Windows binary) and the source code of their application itself. The build process of this package extracts the application source from the Windows installer.
 
@@ -9,12 +9,18 @@ This package applies several patches for:
 - Compatability with a Linux environment in general.
 - Fixing bugs
 
-To install on Arch Linux, use your favourite AUR helper or build manually with:
-```
-git clone https://github.com/SibrenVasse/deezer
+## Building
+
+To install on Ubuntu:
+
+```bash
+git clone https://github.com/siphomateke/deezer
 cd deezer
-makepkg -si
+chmod +x ./install.sh
+sudo ./install.sh
 ```
+
+The Deezer Windows installer will then be downloaded, extracted and patched to work for Linux.
 
 ## Debugging
 Running the application from the commandline will show verbose logging.

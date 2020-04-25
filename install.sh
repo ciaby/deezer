@@ -1,27 +1,21 @@
+#!/bin/sh
+
 # Maintainer: Sibren Vasse <arch@sibrenvasse.nl>
 # Contributor: Ilya Gulya <ilyagulya@gmail.com>
 pkgname="deezer"
 pkgver=5.30.50
-pkgrel=1
-pkgdesc="A proprietary music streaming service"
-arch=('any')
-url="https://www.deezer.com/"
-license=('custom:"Copyright (c) 2006-2018 Deezer S.A."')
-depends=('electron')
-provides=('deezer')
-makedepends=('p7zip' 'asar' 'prettier' 'imagemagick' 'npm' 'nodejs')
-source=("$pkgname-$pkgver-setup.exe::https://www.deezer.com/desktop/download/artifact/win32/x86/$pkgver"
-    "$pkgname.desktop"
-    deezer
-    start-hidden-on-tray.patch
-    quit.patch)
-sha256sums=('f9cc50f27af60e85f561b10f1d13f9934897d328509c15d9b013a0620fd38b6e'
-            'f8a5279239b56082a5c85487b0c261fb332623f27dac3ec8093458b8c55d8d99'
-            '8717ba2de9cabc5c0a35780315871329c15bde5ff46c4f0bf859a87e42aa96f5'
-            '2254632a03ca2cf7ae6b50a4109b0bec417cf0db6d669a8037125d13488e3b9f'
-            'd3f96ae6019abb60aa097919b22b1873f83061ed7453cd251e43b3afe5d54919')
+srcdir="$PWD"
+
+install_dependencies() {
+    apt install p7zip imagemagick nodejs wget
+    npm install -g electron@^6 --unsafe-perm=true
+    npm install -g --engine-strict asar
+    npm install -g prettier
+}
 
 prepare() {
+    # Download installer
+    wget "https://www.deezer.com/desktop/download/artifact/win32/x86/$pkgver" -O "$pkgname-$pkgver-setup.exe"
     # Extract app from installer
     7z x -so $pkgname-$pkgver-setup.exe "\$PLUGINSDIR/app-32.7z" >app-32.7z
     # Extract app archive
@@ -48,6 +42,7 @@ prepare() {
 }
 
 package() {
+    cd "$srcdir"
     mkdir -p "$pkgdir/usr/share/deezer"
     mkdir -p "$pkgdir/usr/share/applications"
     mkdir -p "$pkgdir/usr/bin/"
@@ -65,3 +60,6 @@ package() {
     install -Dm644 "$pkgname.desktop" "$pkgdir/usr/share/applications/"
     install -Dm755 deezer "$pkgdir/usr/bin/"
 }
+
+install_dependencies && prepare && package
+echo "Successfully installed Deezer Desktop!"
