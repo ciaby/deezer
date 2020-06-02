@@ -50,6 +50,7 @@ package() {
         mkdir -p "$pkgdir/usr/share/icons/hicolor/${size}x${size}/apps/"
     done
 
+<<<<<<< HEAD
     install -Dm644 resources/app.asar "$pkgdir/usr/share/deezer/"
     install -Dm644 resources/win/deezer-0.png "$pkgdir/usr/share/icons/hicolor/16x16/apps/deezer.png"
     install -Dm644 resources/win/deezer-1.png "$pkgdir/usr/share/icons/hicolor/32x32/apps/deezer.png"
@@ -59,6 +60,9 @@ package() {
     install -Dm644 resources/win/deezer-5.png "$pkgdir/usr/share/icons/hicolor/256x256/apps/deezer.png"
     install -Dm644 "$pkgname.desktop" "$pkgdir/usr/share/applications/"
     install -Dm755 deezer "$pkgdir/usr/bin/"
+
+    # Make sure the deezer:// protocol handler is immediately registered as it's needed for login
+    update-desktop-database --quiet
 }
 
 install_dependencies && prepare && package
