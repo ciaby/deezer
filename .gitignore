@@ -1,3 +1,6 @@
+locales/
+resources/
+swiftshader/
 Deezer.exe
 LICENSE.electron.txt
 LICENSES.chromium.html

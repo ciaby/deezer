@@ -17,7 +17,7 @@ To install on Ubuntu:
 git clone https://github.com/siphomateke/deezer
 cd deezer
 chmod +x ./install.sh
-sudo ./install.sh
+./install.sh
 ```
 
 The Deezer Windows installer will then be downloaded, extracted and patched to work for Linux.
