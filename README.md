@@ -5,8 +5,8 @@ Unofficial script to install Deezer desktop on Ubuntu. Based on [the AUR Script 
 For Windows, Deezer distributes a version of the Electron run time (Windows binary) and the source code of their application itself. The build process of this package extracts the application source from the Windows installer.
 
 This package applies several patches for:
-- Compatability with newer Electron versions 
-- Compatability with a Linux environment in general.
+- Compatibility with newer Electron versions 
+- Compatibility with a Linux environment in general.
 - Fixing bugs
 
 ## Building
