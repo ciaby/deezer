@@ -7,7 +7,7 @@ pkgver=5.30.50
 srcdir="$PWD"
 
 install_dependencies() {
-    apt install p7zip imagemagick nodejs wget
+    apt install p7zip-full imagemagick nodejs wget g++ make
     npm install -g electron@^6 --unsafe-perm=true
     npm install -g --engine-strict asar
     npm install -g prettier
@@ -50,7 +50,6 @@ package() {
         mkdir -p "$pkgdir/usr/share/icons/hicolor/${size}x${size}/apps/"
     done
 
-<<<<<<< HEAD
     install -Dm644 resources/app.asar "$pkgdir/usr/share/deezer/"
     install -Dm644 resources/win/deezer-0.png "$pkgdir/usr/share/icons/hicolor/16x16/apps/deezer.png"
     install -Dm644 resources/win/deezer-1.png "$pkgdir/usr/share/icons/hicolor/32x32/apps/deezer.png"
